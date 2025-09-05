@@ -116,9 +116,9 @@ const AboutPage = () => {
           <h3 className="text-2xl font-bold mb-4">
             Ready to Start Your Emotional Wellness Journey?
           </h3>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+          {/* <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
             Join MoodVibe Today
-          </button>
+          </button> */}
         </div>
       </div>
 

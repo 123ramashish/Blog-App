@@ -24,7 +24,7 @@ const Home1 = () => {
               Welcome to <span className='text-blue-400'> MoodVibe.</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Welcome to our mental health app, where you can anonymously chat, track your mood, and receive personalized support through quizzes and an AI assistant. Prioritize your emotional well-being discreetly and effectively with our compassionate community.
+            Welcome to our Mental Health Web, where you can anonymously chat, track your mood, and receive personalized support through quizzes and an AI assistant. Prioritize your emotional well-being discreetly and effectively with our compassionate community.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               

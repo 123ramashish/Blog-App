@@ -3,6 +3,8 @@ import User from "../models/user.model.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
+import Mood from "../models/mood.schema.js";
+import mongoose from "mongoose";
 dotenv.config();
 
 export const test = async (req, res) => {
@@ -200,3 +202,47 @@ export const signout = async (req, res, next) => {
       .json({ message: "An error occurred during signout" });
   }
 };
+
+export const saveMoodData = async (req, res, next) => {
+  try {
+    // Extract userId and answers from the request body
+    const { userId, mood } = req.body;
+    // Create a new Mood instance
+    const moodData = new Mood({
+      userId: userId,
+      result: mood, 
+    });
+
+    // Save the mood data to the database
+    const savedMood = await moodData.save();
+
+    console.log("Mood data saved successfully:", savedMood);
+    return res.status(200).json({ message: "Save mood data successfully", data: savedMood });
+  } catch (error) {
+    console.error("Error saving mood data:", error);
+    return res.status(500).json({ message: "An error occurred while saving mood data" });
+  }
+};
+
+
+export const getMoodData = async (req, res, next) => {
+    try {
+        const userId = req.query.userId; // Extract userId from query parameters
+        console.log("User  ID:", userId);
+
+        // Ensure userId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ message: "Invalid user ID format" });
+        }
+
+        // Fetch mood data for the specific user
+        const result = await Mood.find({ userId: new mongoose.Types.ObjectId(userId) }); // Correctly filter by userId
+        console.log(result);
+        return res.status(200).json({ message: "Mood data fetched successfully", data: result });
+    } catch (error) {
+        console.error("Error fetching mood data:", error);
+        return res.status(500).json({ message: "An error occurred while fetching mood data" });
+    }
+};
+
+

@@ -25,7 +25,7 @@ export default function Header() {
 
  const handleSignOut = async () => {
     try {
-      const response = await fetch("/api/user/signout", {
+      const response = await fetch("http://localhost:5000/api/user/signout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -115,10 +115,10 @@ export default function Header() {
               </Dropdown.Header>
               <Dropdown.Item
                 as={Link}
-                to="/dashboard"
+                to="/moodHistory"
                 className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                Dashboard
+                History
               </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item className="px-4 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20" onClick={handleSignOut}>

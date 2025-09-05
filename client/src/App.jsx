@@ -12,9 +12,14 @@ import Login from './pages/Login';
 import ForgotPassword from './components/ForgotPassword';
 import ContactPage from './pages/Contact';
 import NotFound from './pages/NotFound';
-import MoodTest from './pages/MoodTest';
 import AITherapist from './pages/AITherapist';
+import { useSelector } from 'react-redux';
+import MentalHealthQuiz from './components/Quiz';
+import MoodHistory from './components/MoodHistory';
+
 export default function App() {
+  const { user } = useSelector((state) => state.user)
+  console.log(user)
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -27,8 +32,11 @@ export default function App() {
         <Route path="/signout" element={<Signout />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/test" element={<MoodTest />} />
-        <Route path="/therapist" element={<AITherapist />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/test" element={<MentalHealthQuiz />} />
+          <Route path="/moodHistory" element={<MoodHistory />} />
+          <Route path="/therapist" element={<AITherapist />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
 
       </Routes>
